@@ -7,7 +7,7 @@ import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
   build: {
-    outDir: '../public',
+    outDir: 'dist',
     emptyOutDir: true,
     sourcemap: true,
   },
