@@ -18,12 +18,12 @@ export const Landing = () => {
     <div style={{ backgroundImage: `url(${Background})` }} className="flex h-screen bg-cover bg-center">
       <div className="container m-auto flex flex-col gap-12 items-center">
         <div>
-          <Title order={1}>Vincent Vallaeys</Title>
+          <Title order={1} className="text-white">Vincent Vallaeys</Title>
           <Title order={2} className="text-muted-foreground">Software Engineer</Title>
         </div>
         <div role="button" className="w-8 cursor-pointer">
           <a href="https://github.com/Topvennie" target="_blank" rel="noopener noreferrer">
-            <GithubIcon className="hover:text-orange-500" />
+            <GithubIcon className="text-white hover:text-orange-500" />
           </a>
         </div>
         <div className="relative">
@@ -40,7 +40,7 @@ export const Landing = () => {
           </a>
         </div>
         <div onClick={handleScroll} role="button" className="pt-12 cursor-pointer animate-hovering">
-          <ChevronsDownIcon className="h-8 w-8 hover:text-orange-500" />
+          <ChevronsDownIcon className="h-8 w-8 text-white hover:text-orange-500" />
         </div>
       </div>
     </div>
@@ -49,6 +49,6 @@ export const Landing = () => {
 
 const ColouredButton = ({ className, ...props }: ComponentProps<"button">) => {
   return (
-    <Button variant="ghost" className={cn("border border-white hover:border-orange-500 rounded-2xl cursor-pointer", className)} {...props} />
+    <Button variant="ghost" className={cn("text-white border border-white hover:border-orange-500 rounded-2xl cursor-pointer", className)} {...props} />
   )
 }

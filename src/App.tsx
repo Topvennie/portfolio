@@ -4,7 +4,7 @@ import { Projects } from './components/Projects'
 
 function App() {
   return (
-    <div className="w-screen bg-[#191919]">
+    <div className="w-screen">
       <Landing />
       <div className="container mx-auto px-8">
         <About />
@@ -17,5 +17,4 @@ function App() {
 export default App
 
 // TODO: Add analytics
-// TODO: Check light mode
 // TODO: Optimize images

@@ -11,7 +11,7 @@ const orderClasses = [
 ]
 
 export const Title = ({ order, className, ...props }: Props) => {
-  const classNames = cn("text-white wrap-anywhere break-normal whitespace-pre-wrap", order - 1 < orderClasses.length ? orderClasses[order - 1] : "", className)
+  const classNames = cn("wrap-anywhere break-normal whitespace-pre-wrap", order - 1 < orderClasses.length ? orderClasses[order - 1] : "", className)
 
   switch (order) {
     case 1:
