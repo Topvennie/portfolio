@@ -10,6 +10,7 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
+    ignores: ["./src/components/ui/*"],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
@@ -29,8 +30,6 @@ export default defineConfig([
     },
     plugins: {
       react,
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
