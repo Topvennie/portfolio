@@ -16,5 +16,3 @@ function App() {
 
 export default App
 
-// TODO: Add analytics
-// TODO: Optimize images
