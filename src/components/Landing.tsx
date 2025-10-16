@@ -15,7 +15,7 @@ export const Landing = () => {
   }
 
   return (
-    <div style={{ backgroundImage: `url(${Background})` }} className="flex h-screen bg-cover bg-center">
+    <div style={{ backgroundImage: `url(${Background})` }} className="flex h-screen bg-cover bg-bottom">
       <div className="container m-auto flex flex-col gap-12 items-center">
         <div>
           <Title order={1} className="text-white">Vincent Vallaeys</Title>
