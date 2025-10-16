@@ -1,10 +1,13 @@
 import ProfileImage from "@/assets/me.jpg?format=webp"
-import { useState } from "react"
+import { useMemo, useState, type ComponentProps, type ReactNode } from "react"
 import { motion } from "framer-motion";
 import { Skills } from "./Skills"
 import { Experience } from "./Experience";
 import { GridAligned } from "./atoms/GridAligned";
 import { MailIcon, PhoneIcon } from "lucide-react";
+import { Title } from "./atoms/Title";
+import { cn } from "@/lib/utils";
+import { useIsDesktop } from "@/lib/hooks/useIsDesktop";
 
 const Tab = {
   experience: "Experiences",
@@ -13,14 +16,17 @@ const Tab = {
 } as const;
 type Tab = (typeof Tab)[keyof typeof Tab]
 
-const me = `I’m a developer from Ghent with a strong focus on building projects that have a clear, real-world impact.
-After spending several years studying computer science and actively contributing to student organisations, I realised that my motivation comes from creating software that I know is being used.
-I enjoy working on both the frontend and backend, usually with Go, React, and TypeScript, and I like projects that go futher than plain CRUD operations.
+const me = `I’m a developer from Ghent with a strong preference on building projects that have a clear, real-world impact.
+After spending several years studying computer science and actively contributing to student organisations, I realised that my motivation comes from creating software that I know is actively being used.
+
+I enjoy working on both the frontend and backend, usually with Go, React, and TypeScript, and I prefer projects that go futher than plain CRUD operations.
 
 Outside of coding, I’ve been involved in various student initiatives, where I learned a lot about teamwork, coordination, and turning ideas into working systems.
 `
 
 export const About = () => {
+  const isDesktop = useIsDesktop()
+
   const [selected, setSelected] = useState<Tab>(Tab.experience)
 
   const getSelectedTab = () => {
@@ -47,43 +53,77 @@ export const About = () => {
     setSelected(tab)
   }
 
+  const selectedTab = useMemo(() => getSelectedTab(), [selected])
+
   return (
-    <div className="min-h-screen">
-      <div id="about" className="container m-auto pt-24">
-        <div className="grid grid-cols-3 gap-12">
-          <div className="col-span-2 flex flex-col gap-12">
-            <h2 className="text-7xl font-extrabold text-white">About Me</h2>
-            <p className="text-muted-foreground whitespace-pre-wrap text-pretty text-justify">{me}</p>
-            <div className="relative flex gap-24 border-b border-transparent">
-              {Object.values(Tab).map(v => (
-                <div key={v} onClick={() => handleClick(v)} className="relative font-bold cursor-pointer pb-1 hover:text-orange-500">
-                  {v}
-                  {selected === v && (
-                    <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 h-[2px] w-full bg-orange-500" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="hidden lg:block">
-              {getSelectedTab()}
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <img src={ProfileImage} className="object-contain rounded-2xl max-w-102" />
-            <GridAligned className="grid-cols-[max-content_1fr] items-center">
-              <GridAligned.Title><PhoneIcon size={18} /></GridAligned.Title>
-              <GridAligned.Description>+32 470 20 81 75</GridAligned.Description>
-              <GridAligned.Title><MailIcon size={18} /></GridAligned.Title>
-              <GridAligned.Description className="text-wrap break-all">vincent.vallaeys@gmail.com</GridAligned.Description>
-            </GridAligned>
-          </div>
-          <div className="col-span-3 lg:hidden">
-            {getSelectedTab()}
-          </div>
-        </div>
-      </div>
+    <div id="about" className="pt-12 md:pt-24">
+      {isDesktop
+        ? <AboutDesktop selected={selected} handleClick={handleClick} selectedTab={selectedTab} className="hidden lg:grid" />
+        : <AboutMobile selected={selected} handleClick={handleClick} selectedTab={selectedTab} className="lg:hidden" />
+      }
     </div>
   )
 }
 
+type AboutProps = {
+  selected: Tab;
+  handleClick: (tab: Tab) => void;
+  selectedTab: ReactNode;
+} & ComponentProps<"div">
+
+const AboutMobile = ({ selected, handleClick, selectedTab, className, ...props }: AboutProps) => {
+  return (
+    <div className={cn("flex flex-col gap-8", className)} {...props}>
+      <div>
+        <div className="ml-8 mb-8 float-right">
+          <img src={ProfileImage} className="object-contain rounded-2xl w-36" />
+        </div>
+        <Title order={2} className="pb-4">About Me</Title>
+        <p className="text-muted-foreground break-normal whitespace-pre-wrap text-justify">{me}</p>
+      </div>
+      <div className="flex gap-8">
+        {Object.values(Tab).map(v => (
+          <div key={v} onClick={() => handleClick(v)} className="relative font-bold cursor-pointer pb-1 hover:text-orange-500">
+            {v}
+            {selected === v && (
+              <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 h-[2px] w-full bg-orange-500" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+            )}
+          </div>
+        ))}
+      </div>
+      {selectedTab}
+    </div>
+  )
+}
+
+const AboutDesktop = ({ selected, handleClick, selectedTab, className, ...props }: AboutProps) => {
+  return (
+    <div className={cn("grid grid-cols-3 gap-12 w-full", className)} {...props}>
+      <div className="col-span-2 flex flex-col gap-12">
+        <Title order={2}>About Me</Title>
+        <p className="text-muted-foreground break-normal whitespace-pre-wrap text-justify">{me}</p>
+        <div className="flex gap-24">
+          {Object.values(Tab).map(v => (
+            <div key={v} onClick={() => handleClick(v)} className="relative font-bold cursor-pointer pb-1 hover:text-orange-500">
+              {v}
+              {selected === v && (
+                <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 h-[2px] w-full bg-orange-500" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+              )}
+            </div>
+          ))}
+        </div>
+        {selectedTab}
+      </div>
+      <div className="col-span-1 flex flex-col gap-4">
+        <img src={ProfileImage} className="object-contain rounded-2xl" />
+        <GridAligned className="grid-cols-[max-content_1fr] items-center">
+          <GridAligned.Title><PhoneIcon size={18} /></GridAligned.Title>
+          <GridAligned.Description>+32 470 20 81 75</GridAligned.Description>
+          <GridAligned.Title><MailIcon size={18} /></GridAligned.Title>
+          <GridAligned.Description className="text-wrap break-all">vincent.vallaeys@gmail.com</GridAligned.Description>
+        </GridAligned>
+      </div>
+    </div>
+  )
+}
 

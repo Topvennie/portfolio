@@ -4,6 +4,7 @@ import { ChevronsDownIcon, DownloadIcon } from "lucide-react"
 import type { ComponentProps } from "react"
 import { GithubIcon } from "./icons/github"
 import { Button } from "./ui/button"
+import { Title } from "./atoms/Title"
 
 export const Landing = () => {
   const handleScroll = () => {
@@ -17,8 +18,8 @@ export const Landing = () => {
     <div style={{ backgroundImage: `url(${Background})` }} className="flex h-screen bg-cover bg-center">
       <div className="container m-auto flex flex-col gap-12 items-center">
         <div>
-          <h1 className="text-9xl font-extrabold text-white">Vincent Vallaeys</h1>
-          <h2 className="text-7xl font-semibold text-muted-foreground">Software Engineer</h2>
+          <Title order={1}>Vincent Vallaeys</Title>
+          <Title order={2} className="text-muted-foreground">Software Engineer</Title>
         </div>
         <div role="button" className="w-8 cursor-pointer">
           <a href="https://github.com/Topvennie" target="_blank" rel="noopener noreferrer">

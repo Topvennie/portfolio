@@ -3,6 +3,7 @@ import { Logo } from "./atoms/Logo"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
 import type { LogoOption } from "@/lib/types/logo"
+import { Title } from "./atoms/Title"
 
 type ProjectInfo = {
   title: string;
@@ -88,15 +89,13 @@ You can find more of my work on my GitHub although not all projects are open sou
 
 export const Projects = () => {
   return (
-    <div className="min-h-screen">
-      <div id="projects" className="container m-auto py-24">
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="lg:col-span-2 flex flex-col gap-12">
-            <h2 className="text-7xl font-extrabold text-white">Projects</h2>
-            <p className="text-muted-foreground whitespace-pre-wrap text-pretty text-justify">{explanation}</p>
-          </div>
-          {projects.map(p => <Project key={p.title} project={p} />)}
+    <div id="projects" className="min-h-screen py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="lg:col-span-2 flex flex-col gap-12">
+          <Title order={2}>Projects</Title>
+          <p className="text-muted-foreground break-normal whitespace-pre-wrap text-justify">{explanation}</p>
         </div>
+        {projects.map(p => <Project key={p.title} project={p} />)}
       </div>
     </div>
   )
@@ -141,7 +140,7 @@ const Project = ({ project }: { project: ProjectInfo }) => {
             </div>
           )}
           {project.github && (
-            <Button size="sm" variant="outline" asChild className="border-white rounded-2xl">
+            <Button size="sm" variant="ghost" asChild className="hover:text-orange-500">
               <a href={project.github} target="_blank" rel="noopener noreferrer">
                 Github
                 <ArrowRightIcon />

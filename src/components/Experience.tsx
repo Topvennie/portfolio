@@ -54,7 +54,7 @@ The system is used during the 12urenloop in Ghent and has been used in the past 
     time: "May 2023 - May 2024",
     logo: "wvk",
     title: "WVK - Treasurer",
-    content: `As treasurer of WVK, one of Ghent University's 7 overarching student associations, I hlped manage the budget and distribute subsidies between 22 child associations.
+    content: `As treasurer of WVK, one of Ghent University's 7 overarching student associations, I helped manage the budget and distribute subsidies between 22 child associations.
 I also acted as the first point of contact for the associations regarding funding, logistics and operational issues.
 `
   },
@@ -62,7 +62,7 @@ I also acted as the first point of contact for the associations regarding fundin
 
 export const Experience = () => {
   return (
-    <GridAligned className="lg:space-y-12 space-x-16 items-start">
+    <GridAligned className="gap-y-6 lg:gap-y-12 gap-x-16 items-start">
       {entries.map(e => (
         <Fragment key={e.title}>
           <GridAligned.Title className="text-muted-foreground pt-6 lg:pt-1">{e.time}</GridAligned.Title>
