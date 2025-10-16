@@ -120,7 +120,11 @@ const AboutDesktop = ({ selected, handleClick, selectedTab, className, ...props 
           <GridAligned.Title><PhoneIcon size={18} /></GridAligned.Title>
           <GridAligned.Description>+32 470 20 81 75</GridAligned.Description>
           <GridAligned.Title><MailIcon size={18} /></GridAligned.Title>
-          <GridAligned.Description className="text-wrap break-all">vincent.vallaeys@gmail.com</GridAligned.Description>
+          <GridAligned.Description className="text-wrap break-all">
+            <a href="mailto:vincent.vallaeys@gmail.com" className="hover:text-orange-500">
+              vincent.vallaeys@gmail.com
+            </a>
+          </GridAligned.Description>
         </GridAligned>
       </div>
     </div>

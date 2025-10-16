@@ -27,13 +27,17 @@ export const Landing = () => {
           </a>
         </div>
         <div className="relative">
-          <ColouredButton className="absolute right-1/2 translate-x-[-32px]">
-            CV
-            <DownloadIcon />
-          </ColouredButton>
-          <ColouredButton className="absolute left-1/2 translate-x-[32px]">
-            Contact
-          </ColouredButton>
+          <a href="/cv.pdf" download="Vincent_Vallaeys_CV.pdf">
+            <ColouredButton className="absolute right-1/2 translate-x-[-32px]">
+              CV
+              <DownloadIcon />
+            </ColouredButton>
+          </a>
+          <a href="mailto:vincent.vallaeys@gmail.com">
+            <ColouredButton className="absolute left-1/2 translate-x-[32px]">
+              Contact
+            </ColouredButton>
+          </a>
         </div>
         <div onClick={handleScroll} role="button" className="pt-12 cursor-pointer animate-hovering">
           <ChevronsDownIcon className="h-8 w-8 hover:text-orange-500" />

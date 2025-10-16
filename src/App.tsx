@@ -16,8 +16,6 @@ function App() {
 
 export default App
 
-// TODO: Add cv
-// TODO: Fix contact
 // TODO: Add analytics
-// TODO: Add router for 404
 // TODO: Check light mode
+// TODO: Optimize images
