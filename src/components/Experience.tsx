@@ -1,6 +1,7 @@
 import { Fragment } from "react/jsx-runtime"
 import { GridAligned } from "./atoms/GridAligned"
-import { Logo, type LogoOption } from "./atoms/Logo"
+import { Logo } from "./atoms/Logo"
+import type { LogoOption } from "@/lib/types/logo"
 
 type Entry = {
   time: string

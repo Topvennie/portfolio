@@ -2,7 +2,8 @@ import { GridAligned } from "./atoms/GridAligned"
 import { Separator } from "./ui/separator"
 
 import type { ReactNode } from "react"
-import { Logo, type LogoOption } from "./atoms/Logo"
+import { Logo } from "./atoms/Logo"
+import type { LogoOption } from "@/lib/types/logo"
 
 const logos: Record<string, Record<string, LogoOption[]>> = {
   "languages": {

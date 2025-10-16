@@ -1,7 +1,8 @@
 import { ArrowRightIcon, LinkIcon } from "lucide-react"
-import { Logo, type LogoOption } from "./atoms/Logo"
+import { Logo } from "./atoms/Logo"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
+import type { LogoOption } from "@/lib/types/logo"
 
 type ProjectInfo = {
   title: string;
