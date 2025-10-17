@@ -8,6 +8,7 @@ import Django from "@/assets/icons/django.png?format=webp"
 import Docker from "@/assets/icons/docker.png?format=webp"
 import Fastify from "@/assets/icons/fastify.png?format=webp"
 import Figma from "@/assets/icons/figma.png?format=webp"
+import Git from "@/assets/icons/git.png?format=webp"
 import Go from "@/assets/icons/go.png?format=webp"
 import Gofiber from "@/assets/icons/gofiber.png?format=webp"
 import Grafana from "@/assets/icons/grafana.png?format=webp"
@@ -76,6 +77,7 @@ export const logos = {
   wvk: { logo: Wvk, tip: "Werkgroepen Konvent", href: "https://dsa.ugent.be/verenigingen/details/wvk" },
   weare: { logo: Weare, tip: "We Are", href: "https://we-are.be/" },
   urenloop: { logo: Urenloop, tip: "12 Urenloop", href: "https://12urenloop.be/" },
+  git: { logo: Git, tip: "Git", href: "https://git-scm.com/" },
 } as const satisfies Record<string, LogoInfo>;
 
 export type LogoOption = keyof typeof logos;
