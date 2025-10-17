@@ -90,7 +90,7 @@ You can find more of my work on my GitHub although not all projects are open sou
 export const Projects = () => {
   return (
     <div id="projects" className="min-h-screen py-24">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
         <div className="lg:col-span-2 flex flex-col gap-12">
           <Title order={2}>Projects</Title>
           <p className="text-muted-foreground break-normal whitespace-pre-wrap text-justify">{explanation}</p>
@@ -105,20 +105,18 @@ const Project = ({ project }: { project: ProjectInfo }) => {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h3 className="font-bold text-3xl">{project.title}</h3>
-            {project.website && (
-              <div role="button" className="w-8 cursor-pointer">
-                <a href={project.website} target="_blank" rel="noopener noreferrer">
-                  <LinkIcon className="hover:text-orange-500" />
-                </a>
-              </div>
-            )}
-          </div>
-          {project.organization && <Logo logo={project.organization} />}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <h3 className="font-bold text-3xl">{project.title}</h3>
+          {project.website && (
+            <div role="button" className="w-8 cursor-pointer">
+              <a href={project.website} target="_blank" rel="noopener noreferrer">
+                <LinkIcon className="hover:text-orange-500" />
+              </a>
+            </div>
+          )}
         </div>
+        {project.organization && <Logo logo={project.organization} />}
       </div>
 
       {/* Content */}
@@ -127,12 +125,12 @@ const Project = ({ project }: { project: ProjectInfo }) => {
       </div>
 
       {/* Separator */}
-      <div className="">
+      <div className="hidden lg:block">
         <Separator className="border-2" />
       </div>
 
       {/* Footer */}
-      <div className="pt-4">
+      <div className="lg:pt-4">
         <div className="flex items-center justify-between">
           {project.logos && (
             <div className="flex items-center gap-4">
