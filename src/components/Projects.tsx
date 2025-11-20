@@ -157,7 +157,7 @@ const Project = ({ project }: { project: ProjectInfo }) => {
           )}
           <div className="flex items-center gap-2">
             {project.blogs && project.blogs.map(b => (
-              <Button size="sm" variant="ghost" asChild className="hover:text-orange-500">
+              <Button key={b} size="sm" variant="ghost" asChild className="hover:text-orange-500">
                 <a href={b} target="_blank" rel="noopener noreferrer">
                   <Globe />
                 </a>

@@ -29,17 +29,6 @@ export const About = () => {
 
   const [selected, setSelected] = useState<Tab>(Tab.experience)
 
-  const getSelectedTab = () => {
-    switch (selected) {
-      case Tab.skills:
-        return <Skills />
-      case Tab.experience:
-        return <Experience />
-      case Tab.projects:
-        return null
-    }
-  }
-
   const handleClick = (tab: Tab) => {
     if (tab === Tab.projects) {
       const projects = document.getElementById("projects")
@@ -53,7 +42,16 @@ export const About = () => {
     setSelected(tab)
   }
 
-  const selectedTab = useMemo(() => getSelectedTab(), [selected])
+  const selectedTab = useMemo(() => {
+    switch (selected) {
+      case Tab.skills:
+        return <Skills />
+      case Tab.experience:
+        return <Experience />
+      case Tab.projects:
+        return null
+    }
+  }, [selected])
 
   return (
     <div id="about" className="pt-12 md:pt-24">
