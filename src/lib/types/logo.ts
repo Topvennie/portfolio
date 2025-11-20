@@ -34,6 +34,7 @@ import Vue from "@/assets/icons/vue.png?format=webp"
 import Weare from "@/assets/icons/weare.png?format=webp"
 import Wvk from "@/assets/icons/wvk.png?format=webp"
 import Zeus from "@/assets/icons/zeus.png?format=webp"
+import Grpc from "@/assets/icons/grpc.png?format=webp"
 
 type LogoInfo = {
   logo: string;
@@ -71,6 +72,7 @@ export const logos = {
   proxmox: { logo: Proxmox, tip: "Proxmox", href: "https://www.proxmox.com/en/" },
   grafana: { logo: Grafana, tip: "Grafana", href: "https://grafana.com/" },
   prometheus: { logo: Prometheus, tip: "Prometheus", href: "https://prometheus.io/" },
+  grpc: { logo: Grpc, tip: "Grpc", href: "https://grpc.io" },
   sko: { logo: SKO, tip: "Student Kick-Off", href: "https://www.studentkickoff.be/" },
   zeus: { logo: Zeus, tip: "Zeus WPI", href: "https://zeus.gent/" },
   ugent: { logo: Ugent, tip: "Ghent University", href: "https://www.ugent.be/en" },

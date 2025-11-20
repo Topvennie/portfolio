@@ -1,4 +1,4 @@
-import { ArrowRightIcon, LinkIcon } from "lucide-react"
+import { ArrowRightIcon, Globe, LinkIcon } from "lucide-react"
 import { Logo } from "./atoms/Logo"
 import { Button } from "./ui/button"
 import { Separator } from "./ui/separator"
@@ -8,10 +8,11 @@ import { Title } from "./atoms/Title"
 type ProjectInfo = {
   title: string;
   content: string;
-  organization?: LogoOption;
+  organizations?: LogoOption[];
   website?: string;
   github?: string;
   logos?: LogoOption[];
+  blogs?: [string];
 }
 
 const projects: ProjectInfo[] = [
@@ -22,7 +23,7 @@ Because of the high traffic peaks (up to 400 unique visitors per minute), a lot 
 
 The platform was built for flexibility. It includes an extensive admin panel with logging and configuration tools, integrates with the Crowd Manager and serves as the source of truth for other Student Kick-Off systems.
 `,
-    organization: "sko",
+    organizations: ["sko"],
     website: "https://www.studentkickoff.be",
     logos: ["go", "react", "typescript"]
   },
@@ -32,7 +33,7 @@ The platform was built for flexibility. It includes an extensive admin panel wit
 
 The Events platform simplifies this process by automating as much as possible through various API integrations. It includes a task management system for adding, removing, and executing tasks, as well as a check system that validates event readiness and notifies organisers of approaching deadlines or status changes.
 `,
-    organization: "zeus",
+    organizations: ["zeus"],
     website: "https://events.zeus.gent",
     github: "https://github.com/zeuswpi/events",
     logos: ["go", "react", "typescript"]
@@ -44,7 +45,7 @@ Crowd Manager provides this by analyzing camera feeds at each entrance and exit.
 
 The data is visualised through a Grafana + Prometheus + Node Exporter dashboard and made available via an API for integration with other tools.
 `,
-    organization: "sko",
+    organizations: ["sko"],
     logos: ["python", "grafana", "prometheus"]
   },
   {
@@ -54,7 +55,7 @@ I helped implement a new lap-detection algorithm that determines each runner’s
 
 The data is sent to the frontend for a live visualisation of the race.
 `,
-    organization: "urenloop",
+    organizations: ["urenloop"],
     github: "https://github.com/12urenloop/telraam",
     logos: ["java"],
   },
@@ -64,7 +65,7 @@ The data is sent to the frontend for a live visualisation of the race.
 
 It includes real-time synced lyrics for the current Spotify song by listening to an MQTT stream for the song ID, fetching metadata from Spotify, and displaying timed lyrics from the LRC lib format in the terminal.
 `,
-    organization: "zeus",
+    organizations: ["zeus"],
     github: "https://github.com/zeuswpi/scc",
     logos: ["go", "bubbletea"],
   },
@@ -76,9 +77,22 @@ I focused on the execution and evaluation system, which runs submitted code secu
 Each submission is mounted, executed, and checked against custom test cases provided by professors.
 A major part of the work involved sandboxing and security, ensuring that malicious code couldn’t escape the container or affect other systems.
 `,
-    organization: "ugent",
+    organizations: ["ugent"],
     github: "https://github.com/SELab-2/UGent-7",
     logos: ["python", "django", "docker", "vue"]
+  },
+  {
+    title: "Hortiroot",
+    content: `Hortiroot is a research project with Ghent University focusing on plant growth. To monitor the plants, the team uses flatbed photo scanners that capture images at regular intervals.
+
+I helped build the software that powers this step. It connects to the scanners, splits each scanner surface into adjustable regions, monitors individual plants and automatically generates timelapses.
+Every group of 4 scanners is controlled by a Rasberry Pi. Each Pi communicates with a central backend which then serves a web-based frontend.
+For communication between the Pis and the backend we used RPC, specifically gRPC.
+`,
+    organizations: ["ugent", "zeus"],
+    github: "https://git.zeus.gent/ZeusWPI/hortiroot-scanners",
+    logos: ["grpc", "go", "react"],
+    blogs: ["https://zeus.ugent.be/blog/25-26/hortiroot-intro/"],
   }
 ]
 
@@ -116,7 +130,11 @@ const Project = ({ project }: { project: ProjectInfo }) => {
             </div>
           )}
         </div>
-        {project.organization && <Logo logo={project.organization} />}
+        {project.organizations && (
+          <div className="flex items-center gap-2">
+            {project.organizations.map(o => <Logo key={o} logo={o} />)}
+          </div>
+        )}
       </div>
 
       {/* Content */}
@@ -137,14 +155,23 @@ const Project = ({ project }: { project: ProjectInfo }) => {
               {project.logos.map(l => <Logo key={l} logo={l} />)}
             </div>
           )}
-          {project.github && (
-            <Button size="sm" variant="ghost" asChild className="hover:text-orange-500">
-              <a href={project.github} target="_blank" rel="noopener noreferrer">
-                Github
-                <ArrowRightIcon />
-              </a>
-            </Button>
-          )}
+          <div className="flex items-center gap-2">
+            {project.blogs && project.blogs.map(b => (
+              <Button size="sm" variant="ghost" asChild className="hover:text-orange-500">
+                <a href={b} target="_blank" rel="noopener noreferrer">
+                  <Globe />
+                </a>
+              </Button>
+            ))}
+            {project.github && (
+              <Button size="sm" variant="ghost" asChild className="hover:text-orange-500">
+                <a href={project.github} target="_blank" rel="noopener noreferrer">
+                  Github
+                  <ArrowRightIcon />
+                </a>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </div>

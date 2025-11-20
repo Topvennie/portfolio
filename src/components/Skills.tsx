@@ -20,7 +20,7 @@ const logos: Record<string, Record<string, LogoOption[]>> = {
     "all": ["postgresql", "mongodb", "redis", "minio"],
   },
   "tools": {
-    "all": ["docker", "sentry", "git", "cicd", "coolify", "graphql", "figma", "proxmox", "grafana", "prometheus"],
+    "all": ["docker", "sentry", "git", "cicd", "grpc", "coolify", "graphql", "figma", "proxmox", "grafana", "prometheus"],
   },
 }
 
